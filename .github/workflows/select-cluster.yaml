@@ -1,0 +1,38 @@
+name: Select Cluster
+
+on:
+  workflow_dispatch:
+    inputs:
+      cluster-name:
+        description: "Cluster Name"
+        required: true
+        default: "use1-1"
+        type: choice
+        options:
+          - use1-1
+          - use2-1 
+          - usw2-1
+#env:
+#  cluster_info = [
+#    { "name": "use1-1", "region": "us-east-1" },
+#    { "name": "use2-1", "region": "us-east-2" },
+#    { "name": "usw2-1", "region": "us-west-2" }
+#  ]
+jobs:
+  set-vars:
+    steps:
+      - name: check us-east-1
+        if: ${{ github.event.input.cluster-name }} == 'use1-1
+        env:
+          region: 'us-east-1'
+      - name: check use2-1 
+        if: ${{ github.event.input.cluster-name }} == 'use2-1'
+        env:
+          region: us-east-2
+      - name: check usw2-1
+        if: ${{ github.event.input.cluster-name }} == 'usw2-1'
+        env: 
+          region: us-west-2
+      - name: output vars to check
+        run: echo "cluster - ${{ github.event.input.cluster-name }}, region - $region"
+
