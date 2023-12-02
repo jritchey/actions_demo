@@ -20,6 +20,7 @@ on:
 #  ]
 jobs:
   set-vars:
+    runs-on: ubuntu-latest
     steps:
       - name: check us-east-1
         if: ${{ github.event.input.cluster-name }} == 'use1-1
