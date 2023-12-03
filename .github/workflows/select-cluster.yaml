@@ -3,7 +3,7 @@ name: Select Cluster
 on:
   workflow_dispatch:
     inputs:
-      cluster-name:
+      NAME:
         description: "Cluster Name"
         required: true
         default: "use1-1"
@@ -12,8 +12,8 @@ on:
           - use1-1
           - use2-1 
           - usw2-1
-#env:
-#  cluster_info = [
+env:
+  clustername: ${{ github.event.input.NAME }}
 #    { "name": "use1-1", "region": "us-east-1" },
 #    { "name": "use2-1", "region": "us-east-2" },
 #    { "name": "usw2-1", "region": "us-west-2" }
@@ -22,18 +22,27 @@ jobs:
   set-vars:
     runs-on: ubuntu-latest
     steps:
-      - name: check us-east-1
-        if: ${{ github.event.input.cluster-name }} == 'use1-1
-        env:
-          region: 'us-east-1'
-      - name: check use2-1 
-        if: ${{ github.event.input.cluster-name }} == 'use2-1'
-        env:
-          region: us-east-2
-      - name: check usw2-1
-        if: ${{ github.event.input.cluster-name }} == 'usw2-1'
-        env: 
-          region: us-west-2
-      - name: output vars to check
-        run: echo "cluster - ${{ github.event.input.cluster-name }}, region - $region"
+      - name: Read cluster-name
+        run: | 
+          echo '$clustername'
+      - name: setup region
+        run: |
+          case ${{ github.event.input.NAME }} in 
 
+          use1-1) 
+            export region=us-east-1
+            ;;
+          use2-2)
+            export region=us-east-2 
+            ;;
+          usw2-1)
+            export region=us-west-2
+            ;;
+          *)
+            export region=unknown
+            ;;
+
+      - name: Echo region
+        run: |
+          if $region != unknown then
+            echo $region
