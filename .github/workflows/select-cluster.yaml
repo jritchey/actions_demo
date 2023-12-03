@@ -44,4 +44,4 @@ jobs:
           esac
       - name: Echo region
         run: |
-          echo $region
+          echo ${region}
