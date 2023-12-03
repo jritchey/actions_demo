@@ -41,7 +41,7 @@ jobs:
           *)
             export region=unknown
             ;;
-
+          esac
       - name: Echo region
         run: |
           if $region != unknown then
