@@ -13,7 +13,8 @@ on:
           - use2-1 
           - usw2-1
 env:
-  clustername: ${{ github.event.inputs.NAME }}
+  CLUSTERNAME: ${{ github.event.inputs.NAME }}
+  REGION: null
 #    { "name": "use1-1", "region": "us-east-1" },
 #    { "name": "use2-1", "region": "us-east-2" },
 #    { "name": "usw2-1", "region": "us-west-2" }
@@ -30,13 +31,13 @@ jobs:
           case '${{ github.event.inputs.NAME }}' in 
 
           use1-1) 
-            export region=us-east-1
+            echo 'us-east-1' >> $REGION 
             ;;
           use2-2)
-            export region=us-east-2 
+            echo 'us-east-2' >> $REGION  
             ;;
           usw2-1)
-            export region=us-west-2
+            echo 'us-west-2' >> $REGION 
             ;;
           *)
             export region=unknown
@@ -44,4 +45,4 @@ jobs:
           esac
       - name: Echo region
         run: |
-          echo ${region}
+          echo $REGION 
