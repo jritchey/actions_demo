@@ -44,5 +44,4 @@ jobs:
           esac
       - name: Echo region
         run: |
-          if $region != unknown then
-            echo $region
+          echo $region
