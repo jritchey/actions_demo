@@ -24,10 +24,10 @@ jobs:
     steps:
       - name: Read cluster-name
         run: | 
-          echo '$clustername'
+          echo '${{ github.event.input.NAME }}'
       - name: setup region
         run: |
-          case ${{ github.event.input.NAME }} in 
+          case '${{ github.event.input.NAME }}' in 
 
           use1-1) 
             export region=us-east-1
