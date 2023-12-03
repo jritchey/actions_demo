@@ -13,7 +13,7 @@ on:
           - use2-1 
           - usw2-1
 env:
-  clustername: ${{ github.event.input.NAME }}
+  clustername: ${{ github.event.inputs.NAME }}
 #    { "name": "use1-1", "region": "us-east-1" },
 #    { "name": "use2-1", "region": "us-east-2" },
 #    { "name": "usw2-1", "region": "us-west-2" }
@@ -24,10 +24,10 @@ jobs:
     steps:
       - name: Read cluster-name
         run: | 
-          echo '${{ github.event.input.NAME }}'
+          echo '${{ github.event.inputs.NAME }}'
       - name: setup region
         run: |
-          case '${{ github.event.input.NAME }}' in 
+          case '${{ github.event.inputs.NAME }}' in 
 
           use1-1) 
             export region=us-east-1
