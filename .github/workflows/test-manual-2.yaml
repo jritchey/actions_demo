@@ -1,0 +1,4 @@
+name: manual-test-2
+
+on:
+  workflow_dispatch:
