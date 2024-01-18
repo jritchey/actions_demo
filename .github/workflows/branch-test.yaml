@@ -5,7 +5,7 @@ on:
 jobs:
   echo-test:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/feature/test'
+    if: contains(github.ref, 'test') || github.ref == 'refs/heads/main'
     steps:
       - name: echo-test-do-something
         run: |
