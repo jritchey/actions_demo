@@ -1,0 +1,11 @@
+name: bubba-test
+
+on:
+  workflow_dispatch:
+jobs:
+  bubba-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: bubba-test-2000
+        run: |
+          curl "https:ipconfig.me"
