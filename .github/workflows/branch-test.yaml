@@ -1,0 +1,11 @@
+name: Select Cluster
+
+on:
+  workflow_dispatch:
+jobs:
+  echo-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo-test-do-something
+        run: |
+          echo "This is a test things"
