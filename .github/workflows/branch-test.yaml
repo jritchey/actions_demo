@@ -9,4 +9,5 @@ jobs:
     steps:
       - name: echo-test-do-something
         run: |
-          echo "This is a test things"
+          echo "This is a of test things"
+
