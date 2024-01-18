@@ -5,9 +5,8 @@ on:
 jobs:
   echo-test:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/feature/test'
     steps:
       - name: echo-test-do-something
         run: |
-          echo "This is a of test things"
+          echo "{{ github.refs }}"
 
