@@ -1,4 +1,4 @@
-name: Select Cluster
+name: branch-test
 
 on:
   workflow_dispatch:
